@@ -13,10 +13,20 @@ st.write("Upload a workbook with sheets: **Inputs**, **Receipts**, **Disbursemen
 
 uploaded = st.file_uploader("Upload Excel (.xlsx)", type=["xlsx"])
 
+# @st.cache_data
+# def load_from_excel(file_bytes: bytes):
+#     xl = pd.ExcelFile(io.BytesIO(file_bytes))
+#     def safe_read(sheet_name):
+#         try:
+#             return xl.parse(sheet_name)
+#         except Exception:
+#             return None
+#     return safe_read("Inputs"), safe_read("Receipts"), safe_read("Disbursements")
 @st.cache_data
 def load_from_excel(file_bytes: bytes):
-    xl = pd.ExcelFile(io.BytesIO(file_bytes))
-    def safe_read(sheet_name):
+    # Force the openpyxl engine for .xlsx files
+    xl = pd.ExcelFile(io.BytesIO(file_bytes), engine="openpyxl")
+    def safe_read(sheet_name: str):
         try:
             return xl.parse(sheet_name)
         except Exception:
