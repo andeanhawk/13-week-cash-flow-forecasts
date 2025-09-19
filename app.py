@@ -200,7 +200,7 @@ opening_cash = st.sidebar.number_input("Opening Cash", value=float(opening_cash)
 start_date = st.sidebar.date_input("Week 1 Start Date", value=start_date)
 min_cash = st.sidebar.number_input("Min Cash Threshold", value=float(min_cash))
 rcpt_factor = st.sidebar.slider("Receipts Factor", 0.5, 1.5, float(rcpt_factor), 0.05)
-dsb_factor = st.sidebar.slider("Disbursements Factor", 0.5, 1.5, float(dfac), 0.05)
+dsb_factor = st.sidebar.slider("Disbursements Factor", 0.5, 1.5, float(dsb_factor), 0.05)
 
 receipts_df = coerce_receipts_df(receipts_raw)
 disb_df = coerce_disb_df(disb_raw)
